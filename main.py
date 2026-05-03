@@ -1,20 +1,30 @@
-# Input variables
-days_until_expiration = 5  # Example value
-stock_level = 60  # Example value
-product_type = "Perishable"  # Can be "Perishable" or "Non-Perishable"
-if product_type == 'Perishable':
-    if stock_level > 50:
-        if days_until_expiration <= 3:
-            print ('30% discount applied')
-        if days_until_expiration >=4 and days_until_expiration <= 6:
-            print ("20% discount applied")
-    elif stock_level<=50: 
-        if days_until_expiration > 6:
-            print ("10% discount applied")
+grocery_inventory = {
+    "Milk": ("Dairy", 3.50, 8),
+    "Eggs": ("Dairy", 5.50, 30),
+    "Bread": ("Bakery", 2.99, 15),
+    "Apples": ("Produce", 1.50, 50)
+}
+egg_cena = grocery_inventory.get('Eggs')
+if grocery_inventory['Eggs'][1] > 5:
+    print ('Eggs are too expensive, reducing the price by $1.')
+    grocery_inventory.update({'Eggs': (grocery_inventory['Eggs'][0], grocery_inventory['Eggs'][1] - 1, grocery_inventory['Eggs'][2])})
 else:
-    print ("No discount available for non-perishable items.")
+    print ('The price of Eggs is reasonable.')
+
+grocery_inventory.update({"Tomatoes":("Produce", 1.20, 30)})
+print ('Inventory after adding Tomatoes:', grocery_inventory)
+if grocery_inventory['Milk'][2] < 10:
+    print ('Milk needs to be restocked. Increasing stock by 20 units.')
+    grocery_inventory.update({'Milk': (grocery_inventory['Milk'][0], grocery_inventory['Milk'][1], grocery_inventory['Milk'][2]+20)})
+else:
+    print ('Milk has sufficient stock.')
+if grocery_inventory['Apples'][1] > 2:
+    grocery_inventory.pop('Apples')
+    print ('Apples removed from inventory due to high price.')
+print('Updated inventory:', grocery_inventory)
 
 
+    
 
 
 
