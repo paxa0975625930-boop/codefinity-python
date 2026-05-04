@@ -1,30 +1,19 @@
-grocery_inventory = {
-    "Milk": ("Dairy", 3.50, 8),
-    "Eggs": ("Dairy", 5.50, 30),
-    "Bread": ("Bakery", 2.99, 15),
-    "Apples": ("Produce", 1.50, 50)
+# Inventory dictionary with stock, price, and discount price
+inventory = {
+    "Bread": [42, 1.20, 0.99],  # "Item": [current stock, regular price, discounted price]
+    "Eggs": [225, 2.12, 1.99],  # Eggs should be sold at a discount
+    "Apples": [9, 1.50, 1.35]   # Apples need to be restocked
 }
-egg_cena = grocery_inventory.get('Eggs')
-if grocery_inventory['Eggs'][1] > 5:
-    print ('Eggs are too expensive, reducing the price by $1.')
-    grocery_inventory.update({'Eggs': (grocery_inventory['Eggs'][0], grocery_inventory['Eggs'][1] - 1, grocery_inventory['Eggs'][2])})
-else:
-    print ('The price of Eggs is reasonable.')
-
-grocery_inventory.update({"Tomatoes":("Produce", 1.20, 30)})
-print ('Inventory after adding Tomatoes:', grocery_inventory)
-if grocery_inventory['Milk'][2] < 10:
-    print ('Milk needs to be restocked. Increasing stock by 20 units.')
-    grocery_inventory.update({'Milk': (grocery_inventory['Milk'][0], grocery_inventory['Milk'][1], grocery_inventory['Milk'][2]+20)})
-else:
-    print ('Milk has sufficient stock.')
-if grocery_inventory['Apples'][1] > 2:
-    grocery_inventory.pop('Apples')
-    print ('Apples removed from inventory due to high price.')
-print('Updated inventory:', grocery_inventory)
-
-
+for inv in inventory:
+    data = inventory[inv]
+    if data[0] < 30:
+        print (f'{inv} need restocking.')
+    elif data[0] > 100:
+        print (f'{inv} should be sold at the discounted price of {data[2]}.')
+    else:
+        print (f'{inv} should be sold at the regular price of {data[1]}.')
     
-
+        
+    
 
 
