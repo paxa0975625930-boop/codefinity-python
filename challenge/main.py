@@ -1,16 +1,21 @@
-# Lists of items and categories for slicing
-items = "Bubblegum, Chocolate, Pasta"
-categories = "Candy Aisle, Pasta Aisle"
-candy1 = items[0:9]
-candy2 = items[11:20]
-dry_goods = items[22:27]
-category1 = "Candy Aisle"
-category2 = "Pasta Aisle"
+# List of products, their prices, and the quantities sold
+products = ["Bread", "Apples", "Oranges", "Bananas"]
+prices = [0.50, 1.20, 2.50, 2.00]  # price per item
+quantities_sold = [150, 200, 100, 50]  # number of items sold
 
-bubblegum_price = "$1.50"
-chocolate_price = "$2.00"
-pasta_price = "$5.40"
-print (f'We have {candy1} for {bubblegum_price} in the {category1}')
-print (f'We have {candy2} for {chocolate_price} in the {category1}')
-print (f'We have {dry_goods} for {pasta_price} in the {category2}')
+def calculate_revenue(prices, quantities_sold):
+    revenue = []
+    for ind in range(len(prices)):
+        revenue.append(prices[ind] * quantities_sold[ind])
+    return revenue
 
+def formatted_output (revenue_per_product):
+    product_name = sorted (revenue_per_product)
+    for int, zn in product_name:
+        print (f'{int} has total revenue of ${zn}')
+        
+revenue = calculate_revenue(prices, quantities_sold)
+revenue_per_product = list(zip (products, revenue))
+formatted_output(revenue_per_product)
+
+#print(f"{revenue[0]} has total revenue of ${revenue[1]}")
